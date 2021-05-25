@@ -18,7 +18,7 @@ Several methods for maneuver planning are included in this Github. Each of these
 
 ![GUI mock-up.](./Images/gui_mockup.jpg)
 
-<img src="/Images/gui_mockup.jpg" alt="drawing" width="200"/>
+<img src="./Images/tree_gen_loop.jpg" alt="drawing" width="200"/>
 
 ### Inputs
 
