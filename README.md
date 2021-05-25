@@ -12,11 +12,13 @@ Several methods for maneuver planning are included in this Github. Each of these
 
 * __Optimization (GA) approach__ - (Python) this approach utilizes continous 
 
-![Optimization process flowchart.](./images/optimization_loop.jpg)
+![Optimization process flowchart.](./Images/optimizer_loop.jpg)
 
 * __GUI__ - (Matlab and Python) this interface allows a user to define external inputs, which will display the output of the optimization approach
 
-![GUI mock-up.](./images/gui_mockup.jpg)
+![GUI mock-up.](./Images/gui_mockup.jpg)
+
+<img src="/Images/gui_mockup.jpg" alt="drawing" width="200"/>
 
 ### Inputs
 
