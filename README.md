@@ -7,11 +7,17 @@ This code compilaiton is a result of my Master's thesis here: [[3]](#3). Several
 ## Contents of the GitHub
 Several methods for maneuver planning are included in this Github. Each of these show possible sequential maneuver solutions to achieve accesses of the mobile target at defined target locations with associated target times.
 * __Graph theory approach__ - (Python) this is similar to the approach used by McGrath et al. [[1]](#1). Possible maneuvers are displayed in a tree of sequential solutions
-![graph theory process diagram](./images/graphtheory.png)
+
+![Graph theory process flowchart.](./Images/tree_gen_loop.jpg)
+
 * __Optimization (GA) approach__ - (Python) this approach utilizes continous 
-![graph theory process diagram](./images/graphtheory.png)
+
+![Optimization process flowchart.](./images/optimization_loop.jpg)
+
 * __GUI__ - (Matlab and Python) this interface allows a user to define external inputs, which will display the output of the optimization approach
-![graph theory process diagram](./images/graphtheory.png)
+
+![GUI mock-up.](./images/gui_mockup.jpg)
+
 ### Inputs
 
 
