@@ -1,4 +1,4 @@
-# Mobile-Target-Tracking
+# Mobile Target Tracking
 
 ## Motivation
 This code (primarily in Python) can be used to plan sequential low thrust maneuvers for satellites tracking a mobile target- particularly, this has been used for tracking hurricanes as in [[1]](#1) and [[2]](#2).  This is enabled by an analytical solution for low-thrust three-phase maneuvers [[4]](#4).  
