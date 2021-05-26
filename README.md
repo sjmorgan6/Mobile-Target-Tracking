@@ -1,7 +1,7 @@
 # Mobile-Target-Tracking
 
 ## Motivation
-This code (primarily in Python) can be used to plan sequential low thrust maneuvers for satellites tracking a mobile target- particularly, this has been used for tracking hurricanes as in [[1]](#1) and [[2]](#2).  This is enabled by an analytical solution for low-thrust three-phase maneuvers <a id="4">[4]</a>.  
+This code (primarily in Python) can be used to plan sequential low thrust maneuvers for satellites tracking a mobile target- particularly, this has been used for tracking hurricanes as in [[1]](#1) and [[2]](#2).  This is enabled by an analytical solution for low-thrust three-phase maneuvers [[4]](#4).  
 This code compilation is a result of my Master's thesis here: [[3]](#3). Several case studies are shown there with a more in-depth discussion of this procedure of adaptable maneuver planning. 
 
 ## Summary of Approaches
@@ -46,15 +46,21 @@ The following assumptions are made:
 ## __Graph theory approach__:
 ### Description:
 (Python) this is similar to the approach used by McGrath et al. [[1]](#1). Possible maneuvers are displayed in a tree- this involves discretizing the maneuver space. For example, the satellite will maneuver from epoch with some delta-V (i.e. 0.5m/s, 1 m/s, 1.5 m/s). This delta-V step size can be adjusted. In this graph theory approach, each satellite state is a node, maneuvered to the next state by an edge of some delta-V. So, for example, a satellite will begin at node 0, maneuver with 0.5m/s, 1m/s and 1.5m/s, attempting to view Target 1. Each of these maneuver options are shown as edges branching from node 0, creating nodes 1, 2, and 3. Then, the satellite will maneuver from each of these states attempting to view Target 2, and so on. This will create a graph of possible maneuvers, with each branch representing a possible set of sequential maneuvers.  
+
+
 There are a number of ways to analyze the resulting graph. Currently, the shortest path (lowest delta-V) is recorded, found through Dijkstra’s method as in <a id="1">[1]</a>. 
-. 
+
+
+For a 3 target optimization with delta-V options of (-5:0.5:5 m/s) per manuever, this approach takes around x mins to produce results on a PC with 16 GB RAM (CPU: Intel Core i7 @ 1.9GHz). Note this will take an exponentially greater amount of time with more targets (increasing tree depth) 
+
 ### Process
 The process as described above is shown in the flowchart below. 
 Note in the code a negative delta-V corresponds to a lowering maneuver (delta-V applied opposite the satellite velocity vector) and a positive delta-V (delta-V applied in the direction of the satellite velocity vector) corresponds to a raising maneuver. 
 
 <img src="./Images/tree_gen_loop.jpg" alt="Graph theory process flowchart." width="500"/>
 
-###
+### Output
+The result of this is a graph of possible manuever options with the lowest delta-V solution. The 
 
 ## __Optimization (GA) approach__ - (Python) this approach utilizes continuous exploration of possible delta-V space. Rather than 
 
@@ -84,3 +90,9 @@ It is not yet posted (5/24/2021) but once it is posted, it can be found under th
 <a id="4">[4]</a> 
 Mcgrath, Ciara, and Malcolm Macdonald. “General Perturbation Method for Satellite Constellation Reconfiguration Using Low-Thrust Maneuvers.” Journal of Guidance, Control, and Dynamics 42 (July 2019): 1–17. https://doi.org/10.2514/1.G003739.
 
+
+Hagberg, Aric, Dan Schult, and Pieter Swart. “NetworkX — NetworkX Documentation.” NetworkX Network Analysis in Python, 2021. https://networkx.org/.
+
+
+Blank, J., and K. Deb. “Pymoo: Multi-Objective Optimization in Python.” IEEE Access 8 (2020): 89497–509.
+https://pymoo.org/algorithms/brkga.html
