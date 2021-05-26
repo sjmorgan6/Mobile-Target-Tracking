@@ -7,41 +7,41 @@ This code compilation is a result of my Master's thesis here: [[3]](#3). Several
 ## Summary of Approaches
 Several methods for maneuver planning are included in this Github. Each of these show possible sequential maneuver solutions to achieve accesses of the mobile target at defined target locations with associated target times. Each essentially follow the following process:
 * targets are defined along the hurricane track, each with some _viewing window_ (i.e. the satellite should view the storm at 10/10/2010 12:00 UTC +/- 20 hours)
-** the hurricane track will be interpolated between available points to approximate its location at each point in time in the model
+    * the hurricane track will be interpolated between available points to approximate its location at each point in time in the model
 * satellite(s) initialized at epoch with given initial conditions
 * the satellite maneuvers with some delta-V (according to the approach used) over a fixed maneuver duration
 * the satellite is then propagated (no delta-V applied) over the fixed _viewing window_
 * storm accesses are recorded
 * several delta-V options are attempted, according to the approach used
-** if there are no accesses recorded for a given target, the satellite will propagate through this maneuver duration (no delta-V applied)
+    * if there are no accesses recorded for a given target, the satellite will propagate through this maneuver duration (no delta-V applied)
 
 All of the resulting delta-V solutions and associated storm accesses are recorded and presented according to the methods described below (i.e. displayed in a tree as the output of the graph theory approach or shown as a non-dominated set as the output from optimization). 
 
 ### Inputs
 Each of these methods require the following inputs:
 * initial satellite(s) state (can include multiple satellites)
-** orbit altitude
-** orbit inclination
-** initial right ascension of ascending node (_RAAN_)
-** initial argument of latitude (_u_)
-** epoch
-** right ascension of Greenwich at epoch
+    * orbit altitude
+    * orbit inclination
+    * initial right ascension of ascending node (_RAAN_)
+    * initial argument of latitude (_u_)
+    * epoch
+    * right ascension of Greenwich at epoch
 
 * satellite mass
 * satellite maximum thrust capability
 * target track to be used
 
 The following assumptions are made:
-** J2 effects only are included
-** only circular orbits are used
-** the general perturbation analytical solution is used for both propagation and raising/lowering maneuvers (an approximation as opposed to something like a numerical solution)
-** initial and ending altitude of the three-phase maneuvers are the same
-** model parameters:
-*** mean Earth radius: 6371000 m
-*** Earth flattening parameter: 0.00335281
-*** angular velocity of the Earth: 7.29212*10^(-5) rad/s
-*** standard gravitational parameter: 3.98600*10^(14) m^3/s^2
-*** coefficient of the Earth's gravitational zonal harmonic of the 2nd degree (J2): 1082.7*10^(-6)
+* J2 effects only are included
+* only circular orbits are used
+* the general perturbation analytical solution is used for both propagation and raising/lowering maneuvers (an approximation as opposed to something like a numerical solution)
+* initial and ending altitude of the three-phase maneuvers are the same
+* model parameters:
+   * mean Earth radius: 6371000 m
+   * Earth flattening parameter: 0.00335281
+   * angular velocity of the Earth: 7.29212*10^(-5) rad/s
+   * standard gravitational parameter: 3.98600*10^(14) m^3/s^2
+   * coefficient of the Earth's gravitational zonal harmonic of the 2nd degree (J2): 1082.7*10^(-6)
 
 ## __Graph theory approach__:
 ### Description:
