@@ -73,6 +73,17 @@ The result of this is a graph of possible manuever options with the lowest delta
 ## 
 <img src="./Images/gui_mockup.JPG" alt="GUI mock-up." width="500"/>
 
+## How to Use
+Download all code in this repository. 
+
+The following packages are needed in addition to the defaults included with Anaconda installation.
+- networkx (version 2.3 used)
+- openpyxl (version 3.0.7 used)
+
+Some notes that 
+I recommend using Anaconda for easier package managment (https://docs.anaconda.com/anaconda/) and convenient IDE Spyder! I used Python version 3.7, and set up a virtual environment for this. 
+Adjust file paths as needed (this was done on a Windows machine, filepath may be needed to change on other OS)
+
 ## Sources:
 Raising and lowering equations sourced from: DOI: https://doi.org/10.5281/zenodo.4452978
 These are from the paper: https://doi.org/10.2514/1.G003739 
