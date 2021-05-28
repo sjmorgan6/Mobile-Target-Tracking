@@ -23,7 +23,7 @@ Each of these methods require the following inputs:
     * orbit altitude
     * orbit inclination
     * initial right ascension of ascending node (_RAAN_)
-    * initial argument of latitude (_u_)
+    * initial argument of latitude (_u_ - some places this may be _AOL_)
     * epoch
     * right ascension of Greenwich at epoch
 
@@ -51,27 +51,37 @@ The following assumptions are made:
 There are a number of ways to analyze the resulting graph. Currently, the shortest path (lowest delta-V) is recorded, found through Dijkstra’s method as in <a id="1">[1]</a>. 
 
 
-For a 3 target optimization with delta-V options of (-5:0.5:5 m/s) per manuever, this approach takes around x mins to produce results on a PC with 16 GB RAM (CPU: Intel Core i7 @ 1.9GHz). Note this will take an exponentially greater amount of time with more targets (increasing tree depth) 
+For a 3 target optimization with delta-V options of (-5:0.5:5 m/s) per manuever, this approach takes around x mins to produce results on a PC with 16 GB RAM (CPU: Intel Core i7 @ 1.9GHz). Note this will take an exponentially greater amount of time with more targets (increasing tree depth). 
 
-### Process
+### Process:
 The process as described above is shown in the flowchart below. 
 Note in the code a negative delta-V corresponds to a lowering maneuver (delta-V applied opposite the satellite velocity vector) and a positive delta-V (delta-V applied in the direction of the satellite velocity vector) corresponds to a raising maneuver. 
 
 <img src="./Images/tree_gen_loop.jpg" alt="Graph theory process flowchart." width="500"/>
 
 ### Output
-The result of this is a graph of possible manuever options with the lowest delta-V solution. The 
+The result of this is a graph of possible manuever options with the lowest delta-V solution. The image of the graph can be generated as well with the lowest delta-V solution highlighted. 
 
-## __Optimization (GA) approach__ - (Python) this approach utilizes continuous exploration of possible delta-V space. Rather than 
+#### Example (using Typhoon Megi case study)
 
+## __Optimization (GA) approach__
+### Description:
+(Python) this approach utilizes continuous exploration of possible delta-V space. Rather than 
+
+### Process:
+The process as described above is shown in the flowchart below. 
+Note in the code a negative delta-V corresponds to a lowering maneuver (delta-V applied opposite the satellite velocity vector) and a positive delta-V (delta-V applied in the direction of the satellite velocity vector) corresponds to a raising maneuver. 
 <img src="./Images/optimizer_loop.JPG" alt="Optimization process flowchart." width="700"/>
+### Output
+
+#### Example (using Typhoon Megi case study)
 
 ## __GUI__ - (Matlab and Python) this interface allows a user to define external inputs, which will display the output of the optimization approach
 
 <img src="./Images/gui_mockup.JPG" alt="GUI mock-up." width="500"/>
 
 ## 
-<img src="./Images/gui_mockup.JPG" alt="GUI mock-up." width="500"/>
+<img src="./Images/forecasted_optimizer_loop.JPG" alt="Forecasted optimization process flowchart." width="500"/>
 
 ## How to Use
 Download all code in this repository. 
@@ -80,9 +90,9 @@ The following packages are needed in addition to the defaults included with Anac
 - networkx (version 2.3 used)
 - openpyxl (version 3.0.7 used)
 
-Some notes that 
+Some notes that may be helpful for beginner coders (like me!):
 I recommend using Anaconda for easier package managment (https://docs.anaconda.com/anaconda/) and convenient IDE Spyder! I used Python version 3.7, and set up a virtual environment for this. 
-Adjust file paths as needed (this was done on a Windows machine, filepath may be needed to change on other OS)
+Adjust file paths as needed (this was done on a Windows machine, filepath may be needed to change on other OS).
 
 ## Sources:
 Raising and lowering equations sourced from: DOI: https://doi.org/10.5281/zenodo.4452978
