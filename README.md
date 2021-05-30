@@ -71,16 +71,20 @@ The result of this is a graph of possible manuever options with the lowest delta
 ### Process:
 The process as described above is shown in the flowchart below. 
 Note in the code a negative delta-V corresponds to a lowering maneuver (delta-V applied opposite the satellite velocity vector) and a positive delta-V (delta-V applied in the direction of the satellite velocity vector) corresponds to a raising maneuver. 
+
 <img src="./Images/optimizer_loop.JPG" alt="Optimization process flowchart." width="700"/>
+
 ### Output
 
 #### Example (using Typhoon Megi case study)
 
-## __GUI__ - (Matlab and Python) this interface allows a user to define external inputs, which will display the output of the optimization approach
+## __GUI__
+(Matlab and Python) this interface allows a user to define external inputs, which will display the output of the optimization approach
 
 <img src="./Images/gui_mockup.JPG" alt="GUI mock-up." width="500"/>
 
-## 
+## __Future Work___
+
 <img src="./Images/forecasted_optimizer_loop.JPG" alt="Forecasted optimization process flowchart." width="500"/>
 
 ## How to Use
