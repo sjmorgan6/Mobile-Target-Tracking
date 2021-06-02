@@ -67,7 +67,9 @@ A resulting example graph plot is below:
 
 <img src="./output/graph_theory_tree_example.png" alt="Graph Theory Tree Example." width="700"/>
 
-The nodes and graph to create this are stored in: [output_ga_example_designvar.csv](output_ga_example_designvar.csv) and [output_ga_example_designvar.csv](output_ga_example_designvar.csv) respectively. 
+While not visible at this scale, each edge is labeled with the delta-V required, and each node is numbered. 
+
+The nodes and graph to create this are stored in network object G and [./output/graph_theory_nodes_example.csv](./output/graph_theory_nodes_example.csv). 
 
 
 ## __Optimization (GA) approach__
@@ -86,8 +88,8 @@ From the genetic algorithm (running [optimization_GA.py](optimization_GA.py)), t
 
 #### Example (using Typhoon Megi case study)
 For a 3-target optimization with delta-V options of at most 5 m/s per maneuver, this approach takes around 35 minutes to produce results on a PC with 16 GB RAM (CPU: Intel Core i7 @ 1.9GHz). 
-- [output_ga_example_designvar.csv](output_ga_example_designvar.csv)
-- [output_ga_example_objectives.csv](output_ga_example_objectives.csv)
+- [./output/output_ga_example_designvar.csv](output_ga_example_designvar.csv)
+- [./output/output_ga_example_objectives.csv](output_ga_example_objectives.csv)
 
 These can be plotted:
 
