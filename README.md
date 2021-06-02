@@ -3,10 +3,10 @@ This code compilation is a result of my (Sarah Morgan's) SM thesis here: [[3]](#
 © Massachusetts Institute of Technology 2021.
 
 ## Motivation
-This code (primarily in Python) can be used to plan sequential low thrust maneuvers for satellites tracking a mobile target- particularly, this has been used for tracking hurricanes as in [[1]](#1), [[2]](#2), and [[3]](#3).  This is enabled by an analytical solution for low-thrust three-phase maneuvers [[4]](#4).  
+This code (primarily in Python) can be used to plan sequential low thrust maneuvers for satellites tracking a mobile target- particularly, this has been used for tracking hurricanes as in [[1]](#1), [[2]](#2), and [[3]](#3).  This is enabled by an analytical solution for low-thrust three-phase maneuvers (either raising or lowering orbit altitude for a drift period before returning to the original altitude to shift satellite right ascension of ascending node and argument of latitude [[4]](#4).  
 
 ## Summary of Approaches
-Several methods for maneuver planning are included in this GitHub. Each of these show possible sequential maneuver solutions to achieve accesses of the mobile target at defined target locations with associated target times. Each essentially follow the following process:
+Several methods for maneuver planning are included in this repository. Each of these show possible sequential maneuver solutions to achieve accesses of the mobile target at defined target locations with associated target times. Each essentially follow the following process:
 * targets are defined along the hurricane track, each with some _viewing window_ (i.e. the satellite should view the storm at 10/10/2010 12:00 UTC +/- 20 hours)
     * the hurricane track will be interpolated between available points to approximate its location at each point in time in the model
 * satellite(s) initialized at epoch with given initial conditions
@@ -25,11 +25,11 @@ Each of these methods require the following inputs:
     * orbit inclination
     * initial right ascension of ascending node (_RAAN_)
     * initial argument of latitude (_u_ - some places this may be _AOL_)
-    * epoch
+    * epoch date/time
     * right ascension of Greenwich at epoch
 * satellite mass
 * satellite maximum thrust capability
-* target track to be used
+* target track to be used (and desired spacing of target points along the track)
 
 The following assumptions are made:
 * J2 effects only are included
@@ -64,14 +64,14 @@ The result of this is a graph of possible maneuver options with the lowest delta
 For a 3-target optimization with delta-V options of (-5:0.5:5 m/s) per maneuver, this approach takes around 20 seconds to produce results on a PC with 16 GB RAM (CPU: Intel Core i7 @ 1.9GHz). Note this will take an exponentially greater amount of time with more targets (increasing tree depth). 
 
 A resulting example graph plot is below:
-<img src="./Images/optimizer_loop.JPG" alt="Optimization process flowchart." width="700"/>
+<img src="./output/graph_theory_tree_example.png" alt="Graph Theory Tree Example." width="700"/>
 
 The nodes and graph to create this are stored in: [output_ga_example_designvar.csv](output_ga_example_designvar.csv) and [output_ga_example_designvar.csv](output_ga_example_designvar.csv) respectively. 
 
 
 ## __Optimization (GA) approach__
 ### Description:
-(Python) this approach utilizes continuous exploration of possible delta-V space. Rather than plan all possible maneuvers with a graph approach, a genetic algorithm searches the space of possible delta-V usage continuously. In this particular case, pymoo [[6]](#6) was used to enable multiple objective optimization. 
+(Python) this approach utilizes continuous exploration of possible delta-V space. Rather than plan discretized possible maneuvers with a graph approach, a genetic algorithm searches the space of possible delta-V options continuously. In this particular case, pymoo [[6]](#6) was used to enable multiple objective optimization, specifically a BRKGA was used. The objectives used are currently (minimizing) mean distance to targets accessed, (maximizing) target access time, and (minimizing) delta-V used. 
 
 ### Process:
 The process as described above is shown in the flowchart below. 
@@ -80,7 +80,7 @@ Note in the code a negative delta-V corresponds to a lowering maneuver (delta-V 
 <img src="./Images/optimizer_loop.JPG" alt="Optimization process flowchart." width="700"/>
 
 ### Output
-From the genetic algorithm (running optimization_GA.py), the nondominated set is output. Currently this is in the form of two different csv files, one containing the design variables used to generate these solutions and 
+From the genetic algorithm (running [optimization_GA.py](optimization_GA.py)), the nondominated set is output. Currently this is in two csv files, one containing the design variables (the delta-Vs used) and one containing the objectives. 
 
 
 #### Example (using Typhoon Megi case study)
@@ -89,7 +89,7 @@ For a 3-target optimization with delta-V options of at most 5 m/s per maneuver, 
 - [output_ga_example_objectives.csv](output_ga_example_objectives.csv)
 
 These can be plotted:
-<img src="./Images/optimizer_loop.JPG" alt="Optimization process flowchart." width="700"/>
+<img src="./output/example_nondominatedfront.jpg" alt="Nondominated front example." width="700"/>
 
 ## __GUI Framework__
 (MATLAB and Python) this interface would allow a user to define external inputs, which will display the output of the optimization approach. This code is not yet complete (integration of python files with MATLAB interface required). The mock-up below is generated by the file 'mobile_target_gui.m' - this file can be adjusted to generate results from the inputs given. 
@@ -101,7 +101,7 @@ An approach that is discussed in [[3]](#3) includes utilizing forecasted track d
 
 <img src="./Images/forecasted_optimizer_loop.JPG" alt="Forecasted optimization process flowchart." width="500"/>
 
-Additionally, a worthwhile addition to be explored includes 
+Additionally, a worthwhile addition to be explored includes using alternative objectives.
 
 ## How to Use
 - Download all code in this repository. 
@@ -132,10 +132,9 @@ Additionally, a worthwhile addition to be explored includes
         - series_of_manevuers.py (\*): _this outputs characteristics of flyovers for a given maneuver pattern (list of delta-Vs) given initial conditions and a mobile target track (defined within the script)_ 
 
 
-
 - The following packages are needed in addition to the defaults included with Anaconda installation. (with Python version 3.7.10)
     - matplotlib (version 3.4.2 used)
-        - (!) Note: there appears to be an incompatibility with older versions of networkx and matplotlib- if you get a matplotlib error, check your versions
+        - (!) Note: there appears to be an incompatibility between older versions of networkx and matplotlib- if you get a matplotlib error, check your versions
     - networkx (version 2.4 used)
     - numpy (version 1.20.0)
     - openpyxl (version 3.0.7 used)
@@ -158,13 +157,13 @@ Additionally, a worthwhile addition to be explored includes
 - If you maintain the same file structure and defaults, outputs will be saved in the 'output' folder
  
 
-Some notes that may be helpful for beginner coders (like me!):
+Some notes that may be helpful for beginner coders (like myself, at the start of this project!):
 - I recommend using Anaconda for easier package management (https://docs.anaconda.com/anaconda/) and convenient IDE Spyder! I used Python version 3.7, and set up a virtual environment for this. 
      - virtual environments help ensure there are no conflicts in the versions of packages installed, and help keep things separate from other projects  
 - Adjust file paths as needed (this was done on a Windows machine, filepath may be needed to change on other OS).
 
 ## Sources:
-Raising and lowering equations sourced from: DOI: https://doi.org/10.5281/zenodo.4452978
+Raising and lowering maneuver equations (RAAN_AOL_equations_python.py) sourced from: DOI: https://doi.org/10.5281/zenodo.4452978
 These are from the paper: https://doi.org/10.2514/1.G003739 
 
 <a id="1">[1]</a> 
