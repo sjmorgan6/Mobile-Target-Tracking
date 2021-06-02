@@ -64,6 +64,7 @@ The result of this is a graph of possible maneuver options with the lowest delta
 For a 3-target optimization with delta-V options of (-5:0.5:5 m/s) per maneuver, this approach takes around 20 seconds to produce results on a PC with 16 GB RAM (CPU: Intel Core i7 @ 1.9GHz). Note this will take an exponentially greater amount of time with more targets (increasing tree depth). 
 
 A resulting example graph plot is below:
+
 <img src="./output/graph_theory_tree_example.png" alt="Graph Theory Tree Example." width="700"/>
 
 The nodes and graph to create this are stored in: [output_ga_example_designvar.csv](output_ga_example_designvar.csv) and [output_ga_example_designvar.csv](output_ga_example_designvar.csv) respectively. 
@@ -89,6 +90,7 @@ For a 3-target optimization with delta-V options of at most 5 m/s per maneuver, 
 - [output_ga_example_objectives.csv](output_ga_example_objectives.csv)
 
 These can be plotted:
+
 <img src="./output/example_nondominatedfront.jpg" alt="Nondominated front example." width="700"/>
 
 ## __GUI Framework__
