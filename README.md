@@ -177,8 +177,7 @@ McGrath, Ciara N., Ruaridh A. Clark, Astrid Werkmeister, and Malcolm Macdonald. 
 Morgan, Sarah J., Ciara McGrath, and Olivier L. De Weck. “Mobile Target Tracking Using a Reconfigurable Low Earth Orbit Constellation.” In ASCEND 2020. Virtual Event: American Institute of Aeronautics and Astronautics, 2020. https://doi.org/10.2514/6.2020-4247.
 
 <a id="3">[3]</a> 
-Thesis will be posted in MIT DSpace: https://dspace.mit.edu/ 
-It is not yet posted (5/24/2021) but once it is posted, it can be found under the title: "Reconfigurable Satellite Constellations for Mobile Target Tracking" by Sarah J. Morgan
+Morgan, Sarah J. "Reconfigurable Satellite Constellations for Mobile Target Tracking" Thesis: S.M., Massachusetts Institute of Technology, 2021. https://dspace.mit.edu/handle/1721.1/139043
 
 <a id="4">[4]</a> 
 Mcgrath, Ciara, and Malcolm Macdonald. “General Perturbation Method for Satellite Constellation Reconfiguration Using Low-Thrust Maneuvers.” Journal of Guidance, Control, and Dynamics 42 (July 2019): 1–17. https://doi.org/10.2514/1.G003739.
